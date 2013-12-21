@@ -3,20 +3,21 @@ from config import SQLALCHEMY_DATABASE_URI
 from config import SQLALCHEMY_MIGRATE_REPO
 import datetime
 import os.path
+import random
+import seed_data
 
 from app import db
-from app.models import  Description, SocialUser, User, Post, Interest, Comment, Comment_Reply
+from app.models import  Description, SocialUser, User, Message, Post, Interest, Comment, Comment_Reply
 from app.controllers import utils
 
-import random
 
-import seed_data
 
 descrips    = seed_data.DESCRIPTIONS
 seeds       = seed_data.USERS
 posts       = seed_data.POSTS
 cmnts       = seed_data.COMMENTS
 intrsts     = seed_data.INTERESTS
+titles      = seed_data.COMMENTS
 
 today = datetime.datetime.utcnow()
 last_month = datetime.date(day=1, month=today.month, year=today.year) - datetime.timedelta(days=30)
@@ -49,7 +50,6 @@ def seed_data():
             for speciality in interests:
                 db.session.add(Interest(user.id, speciality))
                 db.session.commit()
-
 
             # social accounts
             social = seeds[el]['social']
@@ -116,11 +116,34 @@ def seed_data():
                                                             datetime.datetime.utcnow())
                         post_reply(user.id, c.id, cmnt, datestamp)
 
-
             except Exception, e:
                 print e
                 print 'An comment error has occured.'
                 return
+
+            try:
+                # dev uer account.
+                users = User.query.all()
+                del users[-1]
+                ## change this to your own user, change the seed_data as well
+                receiver = User.query.filter_by(handle = 'alvaro').first()
+                for x in range(0, 10):
+                    date_created = utils.random_date(receiver.date_created, 
+                                                        datetime.datetime.utcnow())
+                    sender = random.sample(users, 1)[0]
+                    subject = random.sample(['RE: ', ''], 1)[0] + titles[x]
+                    body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+                            Ut a interdum tortor, varius ultricies neque. Maecenas \
+                            blandit nisi rhoncus blandit blandit. Donec lacinia nisi \
+                            vel nunc aliquam sodales. Phasellus auctor gravida eros, \
+                            imperdiet mattis est luctus eget. Mauris quis rutrum ligula.'
+                    msg = Message(sender.id, receiver.id, subject, body)
+                    db.session.add(msg)
+                    db.session.commit()
+
+            except Exception, e:
+                print e
+                print 'An user error has occured.'
 
         except Exception, e:
             print e
@@ -132,6 +155,4 @@ def seed_data():
     except Exception, e:
         print e
         print 'An user error has occured.'
-
-
 seed_data()

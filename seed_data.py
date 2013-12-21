@@ -210,6 +210,23 @@ USERS = {
             'image_url': '/static/img/dev/avatars/tyson.jpg',
             'status': 'Undesputed heavyweight champ of the world'
         }
+    },
+    'alvaro': {
+        'social': {
+            'twitter': {
+                'network':'twitter',
+                'network_id': '37232975',
+                'username': 'alvaromuir',
+                'network_url': 'https://twitter.com/alvaromuir'
+            }
+        },
+        'account': {
+            'email': 'alvaromuir@gmail.com',
+            'display_name': 'Alvaro Muir',
+            'handle': 'alvaro',
+            'image_url': 'https://gravatar.com/avatar/614e328e9baeec410b9346ae2637b0f0?s=200',
+            'status': 'Code slangi\'n'
+        }
     }
 }
 
