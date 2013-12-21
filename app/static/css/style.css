@@ -9912,64 +9912,57 @@ html, body {
 .row.content .main {
   position: relative;
   left: 5%;
+  top: 5px;
   height: 100%;
   clear: left;
 }
-.row.content .main .row.navbar {
-  min-height: 0;
-  margin-bottom: 5px;
-  width: 100%;
+.row.content .main .row.metabar {
+  position: fixed;
+  left: 80%;
+  max-width: 200px;
   background: #fff;
 }
-.row.content .main .row.navbar .login-area {
+@media screen and (max-width: 790px) {
+  .row.content .main .row.metabar {
+    top: 5px;
+    left: 70%;
+    background: none;
+  }
+}
+.row.content .main .row.metabar .login-area {
   float: right;
+  padding: 5px 0 0 0;
+  line-height: 1em;
 }
-.row.content .main .row.navbar .login-area .entry li {
-  margin-right: 10px;
+.row.content .main .row.metabar .login-area .user-info {
+  float: left;
   padding: 0;
-}
-.row.content .main .row.navbar .login-area .entry li :last-child {
-  margin-right: 0;
-}
-.row.content .main .row.navbar .login-area .entry li a {
-  color: #c16069;
-}
-.row.content .main .row.navbar .login-area .entry li a i {
-  font-size: 1.1em;
-}
-.row.content .main .row.navbar .login-area .entry li a i:before {
-  text-shadow: none;
-}
-.row.content .main .row.navbar .login-area .entry li a:hover {
-  color: #ecf0f1;
-}
-.row.content .main .row.navbar .login-area .user-info {
-  float: left;
-  margin-top: 5px;
+  line-height: 1em;
   color: #555555;
+  margin-right: 10px;
 }
-.row.content .main .row.navbar .login-area .user-info .lead {
+.row.content .main .row.metabar .login-area .user-info .lead {
   float: left;
-  margin: 3px 0;
   padding: 0;
   text-align: right;
 }
-.row.content .main .row.navbar .login-area .user-info .lead a {
+.row.content .main .row.metabar .login-area .user-info .lead a {
   font-weight: bold;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools {
   display: inline-block;
-  float: right;
-  margin-top: 5px;
+  float: left;
+  clear: left;
   padding: 0;
+  margin: 5px 0 0 0;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li {
   float: left;
   padding: 0;
   height: 15px;
   margin-left: 20px;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li span.indicator {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li span.indicator {
   float: left;
   margin: -5px 2px 0 -10px;
   line-height: 1em;
@@ -9979,31 +9972,30 @@ html, body {
   color: #ecf0f1;
   background: #c16069;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li :first-child {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li :first-child {
   margin: 0;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li a {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li a {
   padding: 0;
   height: 15px;
   line-height: 1.1em;
   color: #555555;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li a i {
-  font-size: 1.1em;
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li a i {
+  font-size: .9em;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li a i:before {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li a i:before {
   text-shadow: none;
 }
-.row.content .main .row.navbar .login-area .user-info ul.user-tools li a:hover {
+.row.content .main .row.metabar .login-area .user-info ul.user-tools li a:hover {
   color: #c16069;
 }
-.row.content .main .row.navbar .login-area .avatar {
-  float: left;
-  margin: 10px 0 0 10px;
+.row.content .main .row.metabar .login-area .avatar {
+  float: right;
   width: 45px;
   height: 45px;
 }
-.row.content .main .row.navbar .login-area .avatar img {
+.row.content .main .row.metabar .login-area .avatar img {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -10012,11 +10004,11 @@ html, body {
   height: 45px;
 }
 @media screen and (max-width: 790px) {
-  .row.content .main .row.navbar .login-area {
+  .row.content .main .row.metabar .login-area {
     float: left;
   }
 }
-.row.content .main .row.navbar .search {
+.row.content .main .row.metabar .search {
   float: left;
   clear: left;
   padding: 0;
@@ -10024,11 +10016,11 @@ html, body {
   color: #c16069;
   line-height: 1em;
 }
-.row.content .main .row.navbar .search i :before {
+.row.content .main .row.metabar .search i :before {
   float: left;
   margin-top: 5px;
 }
-.row.content .main .row.navbar .search input.nav-search {
+.row.content .main .row.metabar .search input.nav-search {
   float: right;
   margin: 0;
   padding: 0;
@@ -10040,7 +10032,7 @@ html, body {
   border-bottom: 2px solid #c16069;
 }
 @media screen and (max-width: 790px) {
-  .row.content .main .row.navbar {
+  .row.content .main .row.metabar {
     clear: left;
   }
 }

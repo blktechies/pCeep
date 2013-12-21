@@ -67,43 +67,31 @@ html, body {
   .main {
     position: relative;
     left: 5%;
+    top: 5px;
     height: 100%;
     clear: left;
-    .row.navbar {
-      min-height: 0;
-      margin-bottom: 5px;
-      width: 100%;
+    .row.metabar {
+      position: fixed;
+      left: 80%;
+      max-width: 200px;
       background: #fff;
+      @media screen and (max-width: 790px) {
+        top: 5px;
+        left: 70%;
+        background: none;
+      }
       .login-area {
         float: right;
-        .entry {
-          li {
-            margin-right: 10px;
-            padding: 0;
-            :last-child {
-              margin-right: 0;
-            }
-            a {
-              color: $ROSE;
-              i {
-                font-size: 1.1em;
-              }
-              i:before {
-                text-shadow: none;
-              }
-            }
-            a:hover {
-              color: $CLOUDS;
-            }
-          }
-        }
+        padding: 5px 0 0 0;
+        line-height: 1em;
         .user-info {
           float: left;
-          margin-top: 5px;
+          padding: 0;
+          line-height: 1em;
           color: $body-font-color;
+          margin-right: 10px;
           .lead {
             float: left;
-            margin: 3px 0;
             padding: 0;
             text-align: right;
             a {
@@ -112,9 +100,10 @@ html, body {
           }
           ul.user-tools {
             display: inline-block;
-            float: right;
-            margin-top: 5px;
+            float: left;
+            clear: left;
             padding: 0;
+            margin: 5px 0 0 0;
             li {
               float: left;
               padding: 0;
@@ -139,7 +128,7 @@ html, body {
                 line-height: 1.1em;
                 color: $body-font-color;
                  i {
-                  font-size: 1.1em;
+                  font-size: .9em;
                 }
                 i:before {
                  text-shadow: none;
@@ -152,8 +141,7 @@ html, body {
           }
         }
         .avatar {
-          float: left;
-          margin: 10px 0 0 10px;
+          float: right;
           width: 45px;
           height: 45px;
           @include avatar(45px, 10px);
