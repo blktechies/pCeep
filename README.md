@@ -23,7 +23,6 @@
 ```
   $ npm install && bower install
   $ pip install -r requirements.txt
-  $ python manage.py devserver
   $ ./db_create.py
   $ ./db_seed.py
   $ python manage.py dev
