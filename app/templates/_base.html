@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pushCommitpull => where techies meet</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}?v=1.1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+  <div class="row content">
+    <div class="one columns left-nav">
+      <div class="logo">
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo.svg') }}" gumby-retina />
+        </a>
+      </div>
+      <ul class="left-nav-items">
+        <li> 
+          <a href="{{ url_for('all_posts') }}">
+            all posts
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="eleven columns main">
+      <div class="row navbar">
+        <div class='login-area'>
+          <div class='user-info'>
+            {% if g.user.is_authenticated() %}
+            <h5 class='lead'>Welcome, 
+              <a href="{{ url_for('get_profile_by_handle', handle = g.user.handle) }}">
+                {{ g.user.display_name.split(' ')[0] }}
+              </a>
+            </h5>
+            {% else %}
+            <h5 class='lead'>Login via:</h5>
+            {% endif %}
+            <ul class='user-tools'>
+              {% if g.user.is_authenticated() %}
+              <li>
+                <span class="indicator">{{ g.user.unread_messages }}</span>
+                <a href="{{ url_for('get_messages') }}">
+                  <i class='fa fa-envelope'></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url_for('create_post') }}">
+                  <i class='fa fa-comment'></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url_for('get_profile_by_handle', handle = g.user.handle) }}">
+                  <i class='fa fa-cog'></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url_for('logout') }}">
+                  <i class='fa fa-power-off'></i>
+                </a>
+              </li>
+              {% else %}
+              {% include "_logins.html" %}
+              {% endif %}
+            </ul>
+          </div>
+          {% if g.user.is_authenticated()%}
+          <div class='avatar'>
+            <a href="{{ url_for('get_profile_by_handle', handle = g.user.handle) }}">
+              <img src="{{ g.user.image_url }}", alt='g.user.display_name' />
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flash">
+          {% for message in messages %}
+          <li class='warning {{ message.split(':')[0].lower() }} alert'>{{ message }} </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+      </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+  </body>
+  <script data-main="{{ url_for('static', filename='js/main.js') }}" src="{{ url_for('static', filename='components/requirejs.js') }}">
+  </script>
+</html>

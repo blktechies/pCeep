@@ -1,0 +1,162 @@
+<!-- extend base layout -->
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+  <h4 class='lead'>{{user.display_name}}</h4>
+  <form action="" method="post" name="profile">
+    {{ form.hidden_tag() }}
+    <div class='profile'>
+      <div class='meta'>
+        <div class='image photo', data-tooltip='{{user.display_name}}'>
+          <img src='{{user.image_url}}', alt='{{user.display_name}}' />
+        </div>
+        <div class="user-description">
+          {{ user.description }}
+        </div>
+        <div class='timestamps'>
+          <div class='attribute'>
+            <span class='description'>join date:</span>
+            {{ user.date_created|datetime('%m.%d.%Y') }}
+          </div>
+          <div class='attribute'>
+            <span class='description'>last seen:</span>
+              <div class='human datestamp'>
+                {{ user.last_seen|tz_time }}
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class='user-info field'>
+        <div class='attribute'>
+          <span class='description'>handle:</span>
+          {% if g.user == user %}
+          {{ form.handle(class='input') }}
+          {% else %}
+          <span class='data'>{{ user.handle }}</span>
+          {% endif %}
+        </div>
+        <div class='attribute'>
+          <span class='description'>display name:</span>
+          {% if g.user == user %}
+          {{ form.display_name(class='input') }}
+          {% else %}
+          <span class='data'>{{ user.display_name }}</span>
+          {% endif %}
+        </div>
+        <div class='attribute'>
+          <span class='description'>email:</span>
+          {% if g.user == user %}
+          {{ form.email(class='input') }}
+          {% else %}
+          <span class='data'>{{ user.email }}</span>
+          {% endif %}
+        </div>
+        <div class='attribute'>
+          <span class='description'>current status:</span>
+          {% if g.user == user %}
+          {{ form.status(class='input textarea') }}
+          {% else %}
+          <span class='data'>{{ user.status }}</span>
+          {% endif %}
+        </div>
+        {% if g.user == user %}
+        <div class='attribute'>
+          <span class='description'>Description:</span>
+          {% if g.user == user %}
+          {{ form.description(class='select', default = user.description ) }}
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      <div class='user-info field'>
+        <div class='attribute'>
+          {% if user_social_info.twitter%}
+          <span class='description'>twitter:</span>
+          <span class='data'>
+            <a href='https://twitter.com/{{ user_social_info.twitter }}', target='_blank'>
+              @{{ user_social_info.twitter }}
+            </a>
+          </span>
+          {% endif %}
+          <span class='new-handle'>
+          {% if g.user == user %}
+          <i class='fa fa-twitter'><a href='/login/twitter'>
+          {% if user_social_info.twitter %}
+          change
+          {% else %}
+          add
+          {% endif %}
+          twitter login</a></i>
+          {% endif %}
+          </span>
+        </div>
+        <div class='attribute'>
+          {%if user_social_info.github %}
+          <span class='description'>github:</span>
+          <span class='data'>
+            <a href='https://github.com/{{ user_social_info.github }}', target='_blank'>
+              github.com/{{ user_social_info.github }}
+            </a>
+          </span>
+          {% endif %}
+          <span class='new-handle'>
+          {% if g.user == user %}
+          <i class='fa fa-github'><a href='/login/github?next=/profiles/{{ user.handle }}'>
+          {% if user_social_info.github %}
+          change
+          {% else %}
+          add
+          {% endif %}
+          github login</a></i>
+          {% endif %}
+          </span>
+        </div>
+        <div class='attribute'>
+          {%if user_social_info.linkedin %}
+          <span class='description'>linkedin:</span>
+          <span class='data'>
+            <a href='https://linkedin.com/in/{{ user_social_info.linkedin }}', target='_blank'>
+              linkedin.com/in/{{ user_social_info.linkedin }}
+            </a>
+          </span>
+          {% endif %}
+          <span class='new-handle'>
+          {% if g.user == user %}
+          <i class='fa fa-linkedin'><a href='/login/linkedin'>
+          {% if user_social_info.linkedin %}
+          change
+          {% else %}
+          add
+          {% endif %}
+          linkedin login</a></i>
+          {% endif %}
+          </span>
+        </div>
+        {% if g.user == user %}
+        <div class='submit field'>
+          <div class='large default btn'><button>Submit</button></div>
+        </div>
+        {% endif %}
+      </div>
+      <div class='clearfix'></div>
+      {% if posts %}
+      <div class='posts'>
+        <span class='description'>recent posts:</span>
+        <ul class='recent-posts'>
+          {% for post in posts %}
+          <li>
+            <span class='human datestamp'>
+              {{ post.last_updated }}
+            </span>
+            <span class='post-title'>
+              - {{ post.title }}
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+</div>
+{% endblock %}

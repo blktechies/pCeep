@@ -1,0 +1,37 @@
+{
+  "name": "drank",
+  "version": "0.0.1",
+  "authors": [
+    "Alvaro Muir",
+    "@alvaromuir"
+  ],
+  "description": "'Flask based webapp framework. Opinated as hell.'",
+  "keywords": [
+    "Flask",
+    "python",
+    "framework"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.muiral.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/static/src/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.0.3",
+    "gumby": "~2.5.15",
+    "jquery": "~2.0.3",
+    "moment": "~2.4.0",
+    "requirejs": "~2.1.9",
+    "socket.io": "~0.9.15",
+    "gumby-images": "~1.1.0",
+    "normalize-css": "~2.1.3",
+    "lodash": "~2.4.1",
+    "underscore.string": "~2.3.3"
+  }
+}

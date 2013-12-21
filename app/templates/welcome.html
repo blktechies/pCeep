@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+  <div class='image photo'>
+    <img src='{{context.profile_image}}', alt='{{context.name}}' />
+  </div>
+  <div class='email-request form'>
+    <h3 class='lead'>
+      Welcome, 
+      <a href='{{context.network_url}}', target='_blank'>
+        {{context.name}}.
+      </a>
+    </h3>
+    <p>
+      One last thing. Mind if we grab your email? <br />
+      Don't worry. We don't like spam either.
+    </p>
+    <form action="" method="post" name="welcome">
+      {{form.hidden_tag()}}
+      <div class='append field'>
+        {{ form.email(size=33, class='wide email input', placeholder='you@youremail.com') }}
+        <div class='medium primary btn'><button>Signup</button></div>
+      </div>
+    </form>
+    <div class='clearfix'></div>
+  </div>
+</div>
+{% endblock %}

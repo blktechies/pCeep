@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+ <h4 class='lead'>Go 'head and submit a new post</h4>
+</div>
+<div class='eleven columns'>
+  <form action="" method="post" name="post" class="post">
+    {{ form.hidden_tag() }}
+    <div class='user-info field'>
+      <div class='attribute'>
+        <span class='description'>Give it a fancy title:</span>
+        {{ form.title(class='input title', maxlength='55') }}
+      </div>
+      <div class='attribute'>
+        <span class='description'>And a funky description:</span>
+        {{ form.body(class='input textarea') }}
+      </div>
+      <div class='buttons'>
+        <div class='large default btn reset'><button type='reset'>Reset</button></div>
+        <div class='large default btn submit'><button type='submit'>Submit</button></div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

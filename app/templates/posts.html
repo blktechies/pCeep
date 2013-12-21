@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+{% if posts %}
+  {% for post in posts %}
+  <div class='entry'>
+    <div class='user'>
+      <div class='avatar'>
+        <a href="{{ url_for('get_profile_by_handle', handle = post.user.handle) }}">
+          <img src='{{ post.user.image_url }}' />
+        </a>
+      </div>
+<!--       <ul class='user-meta'>
+        <li>
+          <a href='#'><i class='fa fa-heart'></i></a>
+        </li>
+        <li>
+          <a href='#'><i class='fa fa-users'></i></a>
+        </li>
+        <li>
+          <a href='#'><i class='fa fa-envelope'></i></a>
+        </li>
+      </ul> -->
+    </div>
+    <div class='overview'>
+      <h6 class='lead post-meta'>
+        <div class='name'>
+          <a href="{{ url_for('get_profile_by_handle', handle = post.user.handle) }}">
+            {{ post.user.display_name }} , 
+          </a>
+        </div>
+        <div class='human datestamp'>
+          {{ post.last_updated|tz_time }}
+        </div>
+        <div class='comment-count'>
+          <a href="{{ url_for('get_comments', post_title = post.slug) }}">
+            <i class='fa fa-comments'></i> {{ post.comment_count}} comments
+          </a>
+        </div>
+      </h6>
+      <h4 class='lead post-title'>
+        <a href="{{ url_for('get_comments', post_title = post.slug) }}">
+          {{ post.title }}
+        </a>
+      </h4>
+    </div>
+    <div class='details'>
+      {{ post.body }}
+    </div>
+    <div class='clearfix'></div>
+  </div>
+{% endfor %}
+{% else %}
+<h3 class='lead'>
+  No posts yet.... Why don't you log in and leave one?
+</h3>
+{% endif %}
+</div>
+{% endblock %}

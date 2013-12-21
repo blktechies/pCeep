@@ -1,0 +1,751 @@
+// Colors:
+
+$BANANA: #ffe88c;
+$ROSE: #c16069;
+$MUAVE: #814651;
+$CLOUDS: #ecf0f1;
+$SKY: #8EA1B4;
+$ABESTOS: #7f8c8d;
+$CHARCOAL: #292e39;
+
+
+@mixin profile-photo() {
+  .image.photo {
+    float: left;
+    margin: 0;
+    img {
+      max-width: 150px;
+      max-height: 150px;
+    }
+  }
+}
+
+@mixin avatar($size, $radius) {
+  img {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    border-radius: $radius;
+    width: $size;
+    height: $size;
+  }
+}
+
+
+@mixin outline($color: $danger-color) {
+  outline: 1px solid $color;
+}
+
+.test {
+  @include outline;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.row.content {
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  .left-nav {
+    float: left;
+    position: fixed;
+    background: $CHARCOAL;
+    height: 100%;
+    padding: 5px;
+    .logo {
+      width: 95%;
+    }
+    @media screen and (max-width: 790px) {
+      width: 100%;
+      position: relative;
+      height: 60px;
+    }
+  }
+  .main {
+    position: relative;
+    left: 5%;
+    height: 100%;
+    clear: left;
+    .row.navbar {
+      min-height: 0;
+      margin-bottom: 5px;
+      width: 100%;
+      background: #fff;
+      .login-area {
+        float: right;
+        .entry {
+          li {
+            margin-right: 10px;
+            padding: 0;
+            :last-child {
+              margin-right: 0;
+            }
+            a {
+              color: $ROSE;
+              i {
+                font-size: 1.1em;
+              }
+              i:before {
+                text-shadow: none;
+              }
+            }
+            a:hover {
+              color: $CLOUDS;
+            }
+          }
+        }
+        .user-info {
+          float: left;
+          margin-top: 5px;
+          color: $body-font-color;
+          .lead {
+            float: left;
+            margin: 3px 0;
+            padding: 0;
+            text-align: right;
+            a {
+              font-weight: bold;
+            }
+          }
+          ul.user-tools {
+            display: inline-block;
+            float: right;
+            margin-top: 5px;
+            padding: 0;
+            li {
+              float: left;
+              padding: 0;
+              height: 15px;
+              margin-left: 20px;
+              span.indicator {
+                float: left;
+                margin: -5px 2px 0 -10px;
+                line-height: 1em;
+                padding: 1px;
+                font-size: .6em;
+                font-weight: bolder;
+                color: $CLOUDS;
+                background: $ROSE;
+              }
+              :first-child {
+                margin: 0;
+              }
+              a {
+                padding: 0;
+                height: 15px;
+                line-height: 1.1em;
+                color: $body-font-color;
+                 i {
+                  font-size: 1.1em;
+                }
+                i:before {
+                 text-shadow: none;
+                }
+              }
+              a:hover {
+                color: $ROSE;
+              }
+            }
+          }
+        }
+        .avatar {
+          float: left;
+          margin: 10px 0 0 10px;
+          width: 45px;
+          height: 45px;
+          @include avatar(45px, 10px);
+        }
+        @media screen and (max-width: 790px) {
+          float: left;
+        }
+      }
+      .search {
+        float: left;
+        clear: left;
+        padding: 0;
+        margin: 0;
+        color: $ROSE;
+        line-height: 1em;
+        i {
+          :before {
+            float: left;
+            margin-top: 5px;
+          }
+        }
+        input.nav-search {
+          float: right;
+          margin: 0;
+          padding: 0;
+          width: 90%;
+          color: $ROSE;
+          font-size: 1em;
+          border: none;
+          line-height: 1em;
+          border-bottom: 2px solid $ROSE;
+        }
+      }
+      @media screen and (max-width: 790px) {
+        clear: left;
+      }
+    }
+    .flash {
+      margin: -5px 0 0 0;
+      padding: 0;
+    }
+    .users {
+      float: left;
+      .card {
+        float: left;
+        margin: 0 10px 50px 20px;
+        .image.photo {
+          float: left;
+          img {
+            float: left;
+            width: 100%;
+            margin-bottom: 5px;
+          }
+          ul.contacts {
+            float: right;
+            display: inline-block;
+            li {
+              float: left;
+              margin-right: 5px;
+              :last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+        .info {
+          float: left;
+          clear: left;
+          margin-top: -20px;
+          .description {
+            float: left;
+            font-size: small;
+            line-height: 1em;
+            height: 30px;
+          }
+        }
+      }
+    }
+    .profile {
+      .meta {
+        float: left;
+        width: 20%;
+        margin: 0 20px 40px 0;
+        @include profile-photo;
+        .user-description {
+          float: left;
+          clear: left;
+        }
+        .timestamps {
+          float: left;
+          clear: left;
+          .attribute {
+            float: left;
+            clear: left;
+            margin: 5px 0 0 0;
+            line-height: 1em;
+            .description {
+              font-weight: bolder;
+              float: left;
+              width: 100%;
+              font-size: smaller;
+            }
+          }
+        }
+      }
+      .user-info.field {
+        float: left;
+        margin: -20px 0 0 30px;
+        width: 25%;
+        .attribute {
+          float: left;
+          clear: left;
+          margin:  20px 0 10px 0;
+          width: 100%;
+          font-size: 1em;
+          line-height: 1em;
+          i {
+            :before {
+              padding: 0 5px 0 0;
+            }
+            :hover {
+              cursor: pointer;
+            }
+          }
+          .description {
+            float: left;
+            font-weight: bolder;
+          }
+          input {
+            max-width: 320px;
+          }
+          .data {
+            float: left;
+            clear: left;
+          }
+          .new-handle {
+            float: left;
+            clear: left;
+            text-align: right;
+            font-size: .7em;
+            a {
+              color: $primary-color;
+            }
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        .submit.field {
+          clear: left;
+          float: left;
+        }
+      }
+      .posts {
+        .description {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.row.top {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 320px;
+  min-height: 30px;
+  border-bottom: 5px solid $ROSE;
+}
+
+.content.row {
+  display: none; // hidden just until Js is ready
+  ul.sort {
+    margin: 0;
+    height: 30px;
+    display: inline-block;
+    font-size: 1.1em;
+    li {
+      float: left;
+      margin-right: 20px;
+      :first-child {
+        margin-right: 5px;
+      }
+      :last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .entry {
+    margin-bottom: 30px;
+    .user {
+      float: left;
+      margin-right: 10px;
+      min-height: 100px;
+     .avatar {
+        float: left;
+        margin: 0;
+        width: 45px;
+        height: 45px;
+        @include avatar(45px, 45px);
+      }
+      ul.user-meta {
+        float: left;
+        clear: left;
+        display: inline-block;
+        font-size: .7em;
+        li {
+          float: left;
+          margin-right: 5px;
+          :last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .overview {
+      float: left;
+      width: 75%;
+      .post-meta {
+        .name {
+          float: left;
+          a {
+            color: $body-font-color;
+          }
+          a:hover {
+            color: $body-link-color;
+          }
+        }
+        .datestamp {
+          color: $SKY;
+          float: left;
+          margin: 0 7px;
+        }
+        .comment-count {
+          float: left;
+        }
+      }
+      .post-title {
+        margin: -10px 0 0 0;
+      }
+      .lead {
+        float: left;
+        clear: left;
+        line-height: 1em;
+      }
+    }
+    .details {
+      float: left;
+      width: 90%;
+      @media screen and (max-width: 320px) {
+        width: 100%;
+        margin-top: 10px;
+      }
+      @media screen and (max-width: 630px) {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    ul.post-tools {
+      float: right;
+      display: inline-block;
+      padding: 2px;
+      font-size: .8em;
+      line-height: .8em;
+      background: $CLOUDS;
+      li {
+        float: left;
+        margin-right: 10px;
+        padding: 0;
+      }
+      li:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  ul.messages {
+    li.message {
+      float: left;
+      clear: left;
+      margin-bottom: 40px;
+      width: 100%;
+      line-height: 1em;
+      .attribute {
+        float: left;
+        clear: left;
+        .description {
+          float: left;
+          font-weight: bolder;
+          font-size: smaller;
+        }
+        .from{
+          float: left;
+          margin-left: 5px;
+          font-size: smaller;
+        }
+        .subject {
+          font-size: 1em;
+          margin-top: 5px;
+          a {
+            color: $body-font-color;
+          }
+          a.unread {
+            font-weight: bolder;
+          }
+          a.read {
+            font-weight: normal;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      span.from {
+        float: left;
+      }
+      span.subject {
+        float: left;
+        clear: left;
+      }
+    }
+  }
+}
+
+.welcome {
+  padding: 10px 10px 0 0;
+  @include profile-photo;
+  .email-request {
+    float: left;
+    margin-left: 20px;
+    h3 {
+      padding-bottom: 20px;
+    }
+   .append.field {
+    float: left;
+    margin-top: 5px;
+   }
+  }
+}
+
+ul.login-hero {
+  float: left;
+  margin: 20px auto;
+  display: inline-block;
+  font-size: 4em;
+  li {
+    float: left;
+    margin-right: 3em;
+    :last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+form.post {
+  .user-info.field {
+    .attribute {
+      float: left;
+      clear: left;
+      margin: 10px 0;
+      width: 85%;
+      span.description {
+        float: left;
+        width: 85%;
+      }
+      input {
+        float: left;
+        clear: left;
+        width: 85%;
+        #title.input.title {
+          max-width: 40%;
+        }
+      }
+      textarea {
+        height: 10em;
+        line-height: 1.2em;
+      }
+    }
+    .buttons {
+      float: left;
+      width: 85%;
+      .reset {
+        float: left;
+        margin-top: 20px;
+      }
+      .submit {
+        float: right;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.profile {
+  .meta {
+    float: left;
+    margin: 0 20px 40px 0;
+    @include profile-photo;
+    .timestamps {
+      float: left;
+      clear: left;
+      .attribute {
+        float: left;
+        clear: left;
+        margin: 5px 0 0 0;
+        line-height: 1em;
+      }
+    }
+  }
+  .user-info.field {
+    float: left;
+    margin: -20px 30px 0 0;
+    .attribute {
+      float: left;
+      clear: left;
+      margin:  20px 0 10px 0;
+      width: 100%;
+      font-size: 1em;
+      line-height: 1em;
+      i {
+        :before {
+          padding: 0 5px 0 0;
+        }
+        :hover {
+          cursor: pointer;
+        }
+      }
+      .description {
+        float: left;
+        font-weight: bolder;
+      }
+      input {
+        max-width: 320px;
+      }
+      .data {
+        float: left;
+        clear: left;
+      }
+      .new-handle {
+        float: left;
+        clear: left;
+        text-align: right;
+        font-size: .7em;
+        a {
+          color: $primary-color;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .submit.field {
+      clear: left;
+      float: left;
+    }
+  }
+  .posts {
+    .description {
+      font-weight: bold;
+    }
+  }
+}
+
+ul.post-comments {
+  li {
+    float: left;
+    clear: left;
+    margin-top: 15px;;
+    .remarks {;
+      .user {
+        float: left;
+        margin-right: 10px;
+        .avatar {
+          float: left;
+          @include avatar(45px, 45px);
+        }
+      }
+      .comments {
+        float: left;
+        .name {
+          font-weight: bold;
+          float: left;
+          clear: left;
+          a {
+            color: $body-font-color;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+        .datestamp {
+          float: left;
+          color: $SKY;
+          line-height: .8em;
+          font-size: smaller;
+        }
+        .body {
+          float: left;
+          clear: left;
+          .reply {
+            clear: left;
+            font-size: smaller;
+          }
+          ul.comment-replies {
+            float: left;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.read.message {
+  float: left;
+  .attribute {
+    float: left;
+  }
+  .body {
+    float: left;
+    clear: left;
+    padding: 5px;
+    background: $CLOUDS;
+    margin: 10px 0;
+  }
+}
+
+ul.current-users {
+  li {
+    .meta {
+      float: left;
+      margin: 0 0 20px 0;
+      .image.photo {
+        float: left;
+        margin: 0;
+        max-width: 96px;
+        max-height: 96px;
+      }
+    }
+    .user-info {
+      float: left;
+      margin: 0 0 0 10px;
+      font-size: 1em;
+      .handle{
+        float: left;
+        clear: left;
+        margin: -5px 0 0 0;
+      }
+      .name.lead {
+        float: left;
+        clear: left;
+        font-size: 1.4em;
+        padding: 0;
+        margin: -8px 0 0 0;
+        a {
+          color: $body-font-color;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+      ul.user-social-info {
+        float: left;
+        clear: left;
+        margin: 0;
+        display: inline-block;
+        li {
+          float: left;
+          margin: 0 10px 0 0;
+        }
+        li:last-child {
+          margin: 0;
+        }
+      }
+      .attributes {
+        float: left;
+        clear: left;
+        font-size: .9em;
+        margin: -1px 0 0 0;
+        .datestamp {
+          float: left;
+          line-height: 1.3em;
+          font-size: smaller;
+          width: 120px;
+          .title {
+            font-weight: bolder;
+          }
+        }
+      }
+    }
+  }
+}

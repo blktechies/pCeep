@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+{% if users %}
+<div class="row users">
+  {% for user in users %}
+  <div class="two columns card">
+    <div class="image photo">
+      <a href="{{ url_for('get_profile_by_handle', handle = user.handle) }}">
+        <img src='{{ user.image_url }}' />
+      </a>
+      <ul class="contacts">
+        {% for social in user.social_handles %}
+          <li>
+           <a href="{{ social.network_url }}">
+            <icon class="fa fa-{{ social.network }}"></icon>
+          </a>
+        </li>
+        {% endfor %}
+        <li>
+           <a href="/send/message/to/{{ user.handle }}">
+            <icon class="fa fa-envelope"></icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="info">
+      <h5 class="lead">
+        <a href="{{ url_for('get_profile_by_handle', handle = user.handle) }}">
+          {{ user.display_name.split(' ')[0] }}
+        </a>
+      </h5>
+      <div class="description">
+      {% if user.description %}
+        {{ user.description }}
+      {% else %}
+        Just another techie!
+      {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="clearfix"></div>
+</div>
+{% else %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+ <h4 class='lead'>{{ message.title }}</h4>
+</div>
+<div class='eleven columns'>
+  <div class='read message'>
+    <div class='attribute'>
+      <span class='description'>from:</span>
+      <span class='from'>
+        <a href="{{ url_for('get_profile_by_handle', handle = message.sender.handle) }}">
+          {{ message.sender.display_name }}
+        </a> on {{ message.date_created|datetime}}
+      </span>
+    </div>
+    <div class='body'>
+      {{ message.body }}
+    </div>
+  </div>
+  <p>
+    <a href="{{ url_for('message_reply', message_id = message.id) }}">reply</a> | 
+    <a href="{{ url_for('message_trash', message_id = message.id) }}">trash</a>
+  </p>
+  <p>compose a <a href="{{ url_for('new_message') }}">new message</a></p>
+</div>
+{% endblock %}

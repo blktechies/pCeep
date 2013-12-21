@@ -1,0 +1,85 @@
+<!-- extend base layout -->
+{% extends "_base.html" %}
+{% block content %}
+{% if comments %}
+<div class="row">
+  <h3 class='lead'>
+  {{ comment_count }} comments for {{ post.title }}
+  </h3>
+  <p>
+    leave a <a href="{{ url_for('leave_comment', post_title = post.slug) }}">
+      comment
+    </a>
+  </p>
+  <ul class='post-comments'>
+    {% for comment in comments %}
+    <li>
+      <div class='remarks'>
+        <div class='user'>
+          <div class='avatar'>
+            <a href="{{ url_for('get_profile_by_handle', handle = comment.user.handle) }}">
+              <img src='{{ comment.user.image_url }}' />
+            </a>
+          </div>
+        </div>
+        <div class='comments'>
+          <div class='human datestamp'>
+            {{ comment.date_created|tz_time }}
+          </div>
+          <div class="name">
+            <a href="{{ url_for('get_profile_by_handle', handle = comment.user.handle) }}">
+              {{ comment.user.display_name }}
+            </a>
+          </div>
+          <div class='body'>
+            {{ comment.body }}
+            <div class='reply'>
+              <a href="{{ url_for('reply_to_comment', post_title = post.slug, comment_id = comment.id) }}">
+                <i class='fa fa-reply'></i> reply to this
+              </a>
+            </div>
+            {% if comment.replies %}
+            <ul class='comment-replies'>
+              {% for reply in comment.replies %}
+              <li>
+                <div class='remarks'>
+                  <div class='user'>
+                    <div class='avatar'>
+                      <a href="{{ url_for('get_profile_by_handle', handle = reply.user.handle) }}">
+                        <img src='{{ reply.user.image_url }}' />
+                      </a>
+                    </div>
+                  </div>
+                  <div class='comments'>
+                    <div class='human datestamp'>
+                      {{ reply.date_created|tz_time }}
+                    </div>
+                    <div class="name">
+                      <a href="{{ url_for('get_profile_by_handle', handle = reply.user.handle) }}">
+                        {{ reply.user.display_name }}
+                      </a>
+                    </div>
+                    <div class='body'>
+                      {{ reply.body }}
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor%}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        <div class='clearfix'></div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h3 class='lead'>
+      No comments for this post yet
+  </h3>
+  <p>leave a <a href="{{ url_for('leave_comment', post_title = post.slug) }}">comment</a></p>
+  {% endif %}
+</div>
+{% endblock %}

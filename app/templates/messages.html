@@ -1,0 +1,42 @@
+<!-- extend base layout -->
+{% extends "_base.html" %}
+{% block content %}
+<div class="row">
+  {% if messages %}
+  <h3 class='lead'>
+    {{ messages|count }} messages for {{ g.user.display_name }}
+  </h3>
+  <p>compose a <a href="{{ url_for('new_message') }}">new message</a></p>
+  <ul class='messages'>
+    {% for msg in messages %}
+    <li class='message'>
+      <div class='attribute'>
+        <span class='description'>from:</span>
+        <span class='from'>
+          <a href="{{ url_for('get_profile_by_handle', handle = msg.sender.handle) }}">
+            {{ msg.sender.display_name }}
+          </a> on {{ msg.date_created|datetime}}
+        </span>
+      </div>
+      <div class='attribute'>
+        <span class='subject'>
+          {% if msg.viewed %}
+          <a href="{{ url_for('read_message', message_id = msg.id) }}" class='read'>
+          {% else %}
+          <a href="{{ url_for('read_message', message_id = msg.id) }}" class='unread'>
+          {% endif %}
+            {{ msg.title }}
+          </a>
+        </span>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h3 class='lead'>
+      No messages
+  </h3>
+  <p>compose a <a href="{{ url_for('new_message') }}">new message</a></p>
+  {% endif %}
+</div>
+{% endblock %}
